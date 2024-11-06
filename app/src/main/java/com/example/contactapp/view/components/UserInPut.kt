@@ -29,7 +29,7 @@ fun UserInPut(
     onNameChange: (String) -> Unit,
     onEmailChange: (String) -> Unit,
     onPhoneChange: (String) -> Unit,
-    onAddUser: (Pair<String, String>) -> Unit,
+    onAddUser:(Triple<String, String,String>) -> Unit,
     onClearUsers: () -> Unit
 ) {
 
@@ -87,7 +87,7 @@ fun UserInPut(
             label = { Text("Phone") },
             isError = phoneError,
             keyboardOptions = KeyboardOptions.Default.copy(
-                keyboardType = KeyboardType.Email,
+                keyboardType = KeyboardType.Phone,
                 imeAction = ImeAction.Done
             ),
             modifier = Modifier
@@ -96,7 +96,7 @@ fun UserInPut(
             supportingText = {
                 if (phoneError) {
                     Text(
-                        text = if (email.isEmpty()) "Phone cannot be empty" else "Invalid Phone ",
+                        text = if (phone.isEmpty()) "Phone cannot be empty" else "Invalid Phone ",
                         color = MaterialTheme.colorScheme.error,
                         style = MaterialTheme.typography.bodySmall
                     )
@@ -110,12 +110,13 @@ fun UserInPut(
                 .padding(vertical = 8.dp),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            Button(onClick = { if (name.isNotEmpty() && email.isNotEmpty()) onAddUser(name to email) }) {
-                Text("Add User")
+            Button(onClick = { if (name.isNotEmpty() && email.isNotEmpty() && phone.isNotEmpty()) onAddUser(Triple(name , email , phone)) }) {
+                Text("Add Contact")
             }
             Button(onClick = onClearUsers) {
-                Text("Clear Users")
+                Text("Clear Contacts")
             }
         }
     }
 }
+

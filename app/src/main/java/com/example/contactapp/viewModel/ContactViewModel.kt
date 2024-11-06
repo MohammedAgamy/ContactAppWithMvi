@@ -15,7 +15,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
-class ContactViewModel : ViewModel() {
+open class ContactViewModel : ViewModel() {
 
     val repository: ContactRepository = ContactRepositoryImp()
 
@@ -44,7 +44,7 @@ class ContactViewModel : ViewModel() {
 
             is ContactViewIntent.DeleteContact -> deleteContact(intent.contactModel)
             is ContactViewIntent.UndoDelete -> undoDelete()
-            ContactViewIntent.ClearContact -> clearContact()
+            is ContactViewIntent.ClearContact -> clearContact()
             is ContactViewIntent.SearchQueryContact -> searchQueryContact(intent.query)
             is ContactViewIntent.UpdateEmail -> updateEmail(intent.email)
             is ContactViewIntent.UpdateName -> updateName(intent.name)
@@ -121,7 +121,7 @@ class ContactViewModel : ViewModel() {
                 val contacts = ContactModel(id = (0..1000).random(), name, email, phone)
                 val addrepo = repository.addContact(contacts)
                 _viewState.value = _viewState.value.copy(
-                    isLoading = true,
+                    isLoading = false,
                     contact = addrepo,
                     name = "",
                     email = "",

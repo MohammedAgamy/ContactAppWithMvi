@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.example.contactapp.model.ContactModel
 
 @Composable
-fun ContactItem(contactModel: ContactModel, onDeleteUser: (ContactModel) -> Unit) {
+fun ContactItem( contactModel: ContactModel, onDeleteUser: (ContactModel) -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
