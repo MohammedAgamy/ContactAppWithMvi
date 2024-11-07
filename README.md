@@ -39,3 +39,12 @@ The MVI architecture provides a unidirectional data flow to ensure consistency b
 - **`ContactRepository`**: An interface defining data operations, implemented by `ContactRepositoryImp`.
 - **`ContactRepositoryImp`**: Provides data handling for contacts, simulating data operations.
 
+## Getting Started
+
+1. **Clone the Repository**: 
+2. **Build and Run**: Open the project in Android Studio, sync the Gradle files, and run the app on an emulator or device.
+
+3. **Architecture Flow**:
+- **View** sends a **ContactViewIntent** to the **ViewModel**.
+- **ViewModel** updates the **ContactViewState** and triggers any **SnackbarViewEffect** as needed.
+- **UI** observes the **ViewState** and **Snackbar** displays feedback.
